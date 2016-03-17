@@ -4,4 +4,5 @@ function getAuthorsCount(feeds){
     authors.add(feed.author)
   return authors.size
 }
+
 export default getAuthorsCount
