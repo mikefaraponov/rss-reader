@@ -3,6 +3,7 @@ html {
     min-height: 100%;
     background-color: white;
     overflow: auto;
+    padding: 0 4px 0 4px;
 }
 
 .stats {
@@ -50,7 +51,7 @@ html {
 }
 
 .m-magic {
-    padding-top: 20px;
+    padding-top: 15px;
 }
 
 .app-footer {

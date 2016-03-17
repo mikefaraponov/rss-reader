@@ -7,12 +7,12 @@ const ChannelListItem = ({channel, onDelete, onOpen}) => (
       <td className='is-hidden-mobile'>{channel.link}</td>
       <td className="table-link table-icon">
         <a onClick={onOpen}>
-          <Icon fa="newspaper-o"/> Open
+          <Icon fa="newspaper-o"/>
         </a>
       </td>
       <td className="table-link table-icon">
         <a onClick={onDelete}>
-          <Icon fa="calendar-times-o"/> Delete
+          <Icon fa="calendar-times-o"/>
         </a>
       </td>
     </tr>
