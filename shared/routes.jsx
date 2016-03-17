@@ -9,11 +9,11 @@ import Root from './components/Root'
 
 export default (
   <Route component={Root}>
-      <Route component={App} path='/' >
-        <Route component={News} path='/channels/id:id'/>
-        <IndexRoute component={Home}/>
-      </Route>
-      <Route path="*" component={NotFound}/>
+    <Route component={App} path='/'>
+      <Route component={News} path='/channels/id:id'/>
+      <IndexRoute component={Home}/>
+    </Route>
+    <Route path="*" component={NotFound}/>
   </Route>
 );
 

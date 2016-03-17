@@ -10,7 +10,7 @@ module.exports = {
     entry: [ 'babel-polyfill' , __dirname + '/client/index.jsx'],
     output: {
         path: __dirname + '/static',
-        filename: 'boot.js'
+        filename: 'dist.js'
     },
     devtool: NODE_ENV == 'development' ? 'cheap-inline-module-source-map' : null,
     watch: NODE_ENV == 'development',
@@ -44,7 +44,7 @@ module.exports = {
         }]
     },
     plugins: [
-        new ExtractTextPlugin("bulma.css"),
+        new ExtractTextPlugin("dist.css"),
         new webpack.NoErrorsPlugin(),
         new webpack.DefinePlugin({
             NODE_ENV: JSON.stringify(NODE_ENV)

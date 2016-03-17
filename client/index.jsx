@@ -1,5 +1,5 @@
 import 'bulma'
-import styles from './styles.css'
+import styles from './rss.css'
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';

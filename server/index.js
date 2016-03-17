@@ -22,7 +22,7 @@ app
   .use(json())
   .use(urlencoded({ extended: false }))
   .use(Express.static( join(__dirname, '..', 'static') ))
-  .use(singlePageApplication(__dirname, 'index.html'))
+  .use(singlePageApplication(`${__dirname}/../client` , 'index.html'))
 
 server
   .listen(process.env.PORT || 1337, onStart)
