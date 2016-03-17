@@ -18,7 +18,7 @@ class Header extends React.Component {
           isHome = pathName === '/';
           
         return (
-          <header className="header" style={{position: 'fixed', width: '100%', top: 0}}>
+          <header className="header">
             <div className="container">
               <div className="header-left">
                 <Link className="header-item logo" to={"/"} >

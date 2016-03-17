@@ -27,7 +27,6 @@ html {
 }
 
 #blanket {
-    padding-top: 50px;
     padding-bottom: 10px;
 }
 
@@ -103,7 +102,7 @@ a {
     color: black !important;
 }
 
-#add {
+/*#add {
     z-index: 5;
     text-align: center;
     padding-top: 10px;
@@ -117,6 +116,6 @@ a {
     left: 0;
     top: 45%;
     transition: all 0.75s;
-}
+}*/
 
 
