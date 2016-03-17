@@ -5,9 +5,9 @@ import {routeActions} from 'react-router-redux'
 import {getChannelByUrl} from '../redux/actions/getChannelByUrl'
 import {clearAllRss} from '../redux/actions/sync/channels'
 
-@connect((state, own) => ({
-  loading: state.channels.loading, 
-  ...own
+@connect((state) => ({
+  loading: state.channels.loading,
+  channelsCount: state.channels.arrOfChannels.length
 }) )
 class App extends React.Component {
   onBack(ev){
@@ -27,6 +27,7 @@ class App extends React.Component {
     return (
       <main id="blanket">
         <Header 
+          channelsCount={this.props.channelsCount}
           pathName={this.props.location.pathname}
           isLoading={this.props.loading}
           onAdd={::this.onAdd}

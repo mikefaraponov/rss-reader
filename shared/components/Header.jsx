@@ -13,7 +13,7 @@ class Header extends React.Component {
         this.setState({active: !this.state.active})
     }
     render(){
-        const {onAdd, onClear, onBack, pathName, isLoading} = this.props,
+        const {onAdd, onClear, onBack, pathName, isLoading, channelsCount} = this.props,
           active = this.state.active ? 'is-active': '',
           isHome = pathName === '/';
           
@@ -37,6 +37,9 @@ class Header extends React.Component {
                     {
                       isHome?
                           [
+                            <span className="header-item" key='3'>
+                              <a>{channelsCount} Channels Available</a>
+                            </span>,
                             <span className="header-item" key='1'>
                               <a className={`button is-success ${isLoading?'is-loading':''}`} onClick={onAdd}>
                                 <Icon fa='plus'/>&nbsp;Add
