@@ -13,14 +13,23 @@ import getAuthorsCount from '../redux/utils/getAuthorsCount'
   icon: state.feeds.icon
 }))
 class News extends React.Component {
+
+  componentWillUnmount() {
+    clearInterval(this.interval)
+  }
+
+  componentWillMount() {
+    const getFeeds = this.props.dispatch.bind(null, getFeedsById(this.props.id))
+    getFeeds()
+    this.interval = setInterval(getFeeds, 5 * 60 * 1000)
+  }
+
   onMessageOpen(i){
-    return () => {
+    return (ev) => {
       this.props.dispatch(toggleStats(i))
     }
   }
-  componentWillMount() {
-    this.props.dispatch(getFeedsById(this.props.id))
-  }
+
   render(){
     const { feeds, icon, isLoading } = this.props
 
