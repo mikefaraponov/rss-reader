@@ -7,7 +7,7 @@ import {connect} from 'react-redux'
 import {getFeedsById} from '../redux/actions/getFeedsById'
 import {toggleStats} from '../redux/actions/sync/feeds'
 import {routeActions} from 'react-router-redux'
-
+import Icon from '../components/UI/Icon'
 @connect(mapStateToProps)
 class News extends React.Component {
   componentWillUnmount() {
@@ -42,8 +42,8 @@ class News extends React.Component {
       imageUrl: icon
     }
     return isLoading?
-      <Page>
-        <div className="is-text-centered">Loading...</div>
+      <Page className="is-text-centered">
+        <Icon fa="cog fa-spin"/>
       </Page>
       :
       <Page>
