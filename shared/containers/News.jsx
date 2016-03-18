@@ -1,36 +1,38 @@
 import Page from '../components/UI/Page'
-// import Stats from '../components/Stats'
 import NewsList from '../components/News/NewsList'
 import Stats from '../components/News/Stats'
 import getAuthorsCount from '../redux/utils/getAuthorsCount'
+
+import Icon from '../components/UI/Icon'
 import {connect} from 'react-redux'
+import { bindActionCreators } from 'redux'
 import {getFeedsById} from '../redux/actions/getFeedsById'
 import {toggleStats} from '../redux/actions/sync/feeds'
 import {routeActions} from 'react-router-redux'
-import Icon from '../components/UI/Icon'
-@connect(mapStateToProps)
+
+@connect(mapStateToProps, mapDispatchToProps)
 class News extends React.Component {
   componentWillUnmount() {
     clearInterval(this.interval)
   }
+
   componentWillMount() {
     const {
-      id, channels, dispatch
+      id, channels, getFeedsById, notFound
     } = this.props
-
+    console.log(this.props)
     if( channels.find( (el, i) => i == id ) ){
-      const getFeeds = dispatch.bind(null, getFeedsById(id))
-      getFeeds()
-      this.interval = setInterval(getFeeds, 5 * 60 * 1000)
+      getFeedsById(id)
+      this.interval = setInterval(getFeedsById.bind(null, id), 5 * 60 * 1000)
     } 
     else 
-      dispatch(routeActions.replace('/not_found'))
+      notFound('/not_found')
 
   }
 
   onMessageOpen(i){
     return (ev) => {
-      this.props.dispatch(toggleStats(i))
+      this.props.toggleStats(i)
     }
   }
 
@@ -68,4 +70,13 @@ function mapStateToProps({channels, feeds}, props){
   }
 }
 
+function mapDispatchToProps(dispatch){
+  return {
+    ...bindActionCreators({
+      getFeedsById,
+      toggleStats,
+      notFound: routeActions.replace
+    }, dispatch)
+  }
+}
 export default News
