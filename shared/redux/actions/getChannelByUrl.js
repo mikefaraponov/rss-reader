@@ -1,11 +1,11 @@
-import {routeActions} from 'react-router-redux'
-import fetchFeed from '../utils/fetchFeed'
-
 import { 
   ADD_RSS_REQ,
   ADD_RSS_OK,
   ADD_RSS_FAIL 
 } from '../constants'
+import fetchFeed from '../utils/fetchFeed'
+
+const { stringify, parse } = JSON;
 
 function getChannelReq() {
   return {
@@ -14,34 +14,36 @@ function getChannelReq() {
   }
 }
 
-function getChannelOk(feed, channelUrl) {
-  const { stringify, parse } = JSON;
-  const channels = parse(localStorage.channels || '[]')
-  feed.meta.link = channelUrl;
-  localStorage.setItem('channels', 
-    stringify( channels.concat({
-      meta: {
-        title: feed.meta.title,
-        link: channelUrl,
-      },
-      entries: [{
-          pubDate: feed.entries[0] && feed.entries[0].pubDate
-      }]
-    }) )
-  )
-
-  return {
-    type: ADD_RSS_OK,
-    loading: false,
-    feed
-  }
-}
-
 function getChannelFail(message) {
   return {
     type: ADD_RSS_FAIL,
     loading: false,
     message
+  }
+}
+
+function getChannelOk({meta, entries}, channelUrl) {
+  
+  const channels = parse(localStorage.channels || '[]'),
+    [ entry ] = entries,
+    channel = {
+      meta: {
+        title: meta.title,
+        link: channelUrl,
+      },
+      entries: [].concat({
+          pubDate: entry && entry.pubDate
+      })
+    }
+
+  localStorage.channels = stringify( 
+    channels.concat(channel) 
+  )
+
+  return {
+    type: ADD_RSS_OK,
+    loading: false,
+    feed: channel
   }
 }
 

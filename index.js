@@ -1,3 +1,3 @@
-require('babel-core/register');
-require('babel-polyfill');
-require('./server');
+void require('babel-core/register');
+void require('babel-polyfill');
+void require('./server');

@@ -1,4 +1,6 @@
-import { lettersFrequency } from '../shared/redux/utils/getLettersFrequency'
+import { 
+  lettersFrequency 
+} from '../shared/redux/utils/getLettersFrequency'
 
 describe("getLetterFrequency suite", function() {
 

@@ -3,4 +3,3 @@ export const ColumnsMobile = ({className, ...props}) =>
 
 export const Column = ({className, ...props}) => 
   <div className={`column ${className || ''}`} {...props}/>
-

@@ -1,5 +1,5 @@
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import Header from '../components/App/Header'
+import Footer from '../components/App/Footer'
 import {connect} from 'react-redux'
 import {routeActions} from 'react-router-redux'
 import {getChannelByUrl} from '../redux/actions/getChannelByUrl'

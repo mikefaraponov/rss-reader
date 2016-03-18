@@ -1,7 +1,7 @@
 import ChannelListItem from './ChannelListItem'
 
 
-const ChannelList = ({channels, onItemDelete, onItemOpen}) => (
+const ChannelList = ({channels, onItemDelete, onItemOpen}) =>
     <table className="table is-striped">
       <thead>
         <tr>
@@ -24,7 +24,6 @@ const ChannelList = ({channels, onItemDelete, onItemOpen}) => (
         }
       </tbody>
     </table>
-)
 
 
 export default ChannelList

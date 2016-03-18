@@ -7,13 +7,12 @@ import {
   CLEAR_RSS_ERROR
 } from '../constants'
 
-function channels(
-  state = { 
+const {assign} = Object
+
+function channels(state = { 
     loading: false, 
     arrOfChannels: JSON.parse(localStorage.channels || '[]')
-  }, action)
-{
-  const {assign} = Object
+}, action) {
   switch(action.type){
     case ADD_RSS_REQ: 
       return assign({}, state, {
@@ -33,10 +32,11 @@ function channels(
       });
     case REMOVE_RSS:
       return assign({}, state, {
-        arrOfChannels: state.arrOfChannels
-                            .filter((channel, i) =>
-                              i !== action.id
-                            )
+        arrOfChannels: state
+          .arrOfChannels
+          .filter((channel, i) =>
+            i !== action.id
+          )
       });
     case CLEAR_ALL_RSS: 
       return assign({}, state, {

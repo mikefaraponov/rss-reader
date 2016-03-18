@@ -1,6 +1,6 @@
-import Icon from './Icon'
+import Icon from '../UI/Icon'
 
-const ChannelListItem = ({channel, onDelete, onOpen}) => (
+const ChannelListItem = ({channel, onDelete, onOpen}) =>
     <tr>
       <td className='center-align'>{channel.title}</td>
       <td className='center-align'>{new Date(channel.pubDate).toLocaleDateString() || 'Unknown'}</td>
@@ -16,5 +16,5 @@ const ChannelListItem = ({channel, onDelete, onOpen}) => (
         </a>
       </td>
     </tr>
-)
+
 export default ChannelListItem

@@ -1,4 +1,4 @@
-import Icon from '../components/Icon'
+import Icon from '../UI/Icon'
 
 const Footer = () =>
   <footer className="app-footer">Powered by &copy;&nbsp;

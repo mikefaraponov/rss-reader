@@ -1,7 +1,7 @@
 import {connect} from 'react-redux'
-import Page from '../components/Page'
-import ChannelList from '../components/ChannelList'
-import Warning from '../components/Warning'
+import Page from '../components/UI/Page'
+import ChannelList from '../components/Channels/ChannelList'
+import Warning from '../components/UI/Warning'
 import {clearError, removeRss} from '../redux/actions/sync/channels'
 import {routeActions} from 'react-router-redux'
 
@@ -24,7 +24,7 @@ class Home extends React.Component {
 
   render(){
     const {warning, channels} = this.props,
-    channelsWithPubDate = channels.map(el => ({
+    channelsWithPubDate = channels.map(el => ({ 
       ...el.meta,
       pubDate: el.entries[0] && (el.entries[0].pubDate || el.entries[0].pubdate)
     }))

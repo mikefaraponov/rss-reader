@@ -4,12 +4,12 @@ import {
   GET_FEEDS_OK,
   TOGGLE_STATS
 } from '../constants'
+const {assign} = Object
 
 function feeds(state = {
   loading: false, 
   arrOfFeeds: []
 }, action){
-  const {assign} = Object
   switch(action.type){
     case GET_FEEDS_REQ: 
       return assign({}, state, {

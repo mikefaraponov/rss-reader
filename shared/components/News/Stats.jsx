@@ -1,4 +1,4 @@
-import {ColumnsMobile, Column} from './ColumnsMobile'
+import {ColumnsMobile, Column} from '../UI/Columns'
 
 const Stats = ({stats}) => (
     <ColumnsMobile>

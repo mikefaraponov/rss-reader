@@ -1,8 +1,10 @@
-import {routeActions} from 'react-router-redux'
-import ajax from '../utils/ajax'
-import { GET_FEEDS_REQ, GET_FEEDS_FAIL, GET_FEEDS_OK } from '../constants'
-import fetchFeed from '../utils/fetchFeed'
+import { 
+  GET_FEEDS_REQ, 
+  GET_FEEDS_FAIL, 
+  GET_FEEDS_OK 
+} from '../constants'
 import { searchAnImage } from "../utils/stringParsers"
+import fetchFeed from '../utils/fetchFeed'
 
 function getFeedsReq() {
   return {

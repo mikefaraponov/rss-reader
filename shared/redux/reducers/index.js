@@ -4,4 +4,4 @@ import feeds from './feeds'
 export default {
   channels,
   feeds
-};
+}

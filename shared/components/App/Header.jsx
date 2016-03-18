@@ -1,5 +1,5 @@
 import {Link, IndexLink } from 'react-router'
-import Icon from './Icon'
+import Icon from '../UI/Icon'
 
 
 class Header extends React.Component {

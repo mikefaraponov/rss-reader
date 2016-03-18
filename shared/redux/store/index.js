@@ -2,25 +2,25 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { browserHistory } from 'react-router'
 import { syncHistory, routeReducer } from 'react-router-redux'
 import reducers from '../reducers'
-import thunk from 'redux-thunk'
+import thunkMiddleWare from 'redux-thunk'
 
 const reducer = combineReducers(Object.assign({}, reducers, {
   routing: routeReducer
 }))
 
-const reduxRouter = syncHistory(browserHistory)
+const reduxRouterMiddleWare = syncHistory(browserHistory)
 
-var middlewares = [reduxRouter, thunk]
+var middlewares = [reduxRouterMiddleWare, thunkMiddleWare]
 
 if(NODE_ENV === 'development') {
-  const createLogger = require('redux-logger')
-  middlewares.push(createLogger())
+  const loggerMiddleWare = require('redux-logger')()
+  middlewares.push(loggerMiddleWare)
 }
 
 const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore)
 
 const store = createStoreWithMiddleware(reducer)
 
-reduxRouter.listenForReplays(store)
+reduxRouterMiddleWare.listenForReplays(store)
 
 export default store
