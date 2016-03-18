@@ -5,10 +5,7 @@ import Warning from '../components/Warning'
 import {clearError, removeRss} from '../redux/actions/sync/channels'
 import {routeActions} from 'react-router-redux'
 
-@connect(state => ({
-  warning: state.channels.message,
-  channels: state.channels.arrOfChannels
-}))
+@connect(stateToProps)
 class Home extends React.Component {
 
   onItemDelete(i){
@@ -26,28 +23,32 @@ class Home extends React.Component {
   }
 
   render(){
-    const {
-      warning, 
-      channels
-    } = this.props
+    const {warning, channels} = this.props,
+    channelsWithPubDate = channels.map(el => ({
+      ...el.meta,
+      pubDate: el.entries[0] && (el.entries[0].pubDate || el.entries[0].pubdate)
+    }))
     return (
       <Page>
-          <Warning 
-            onClose={::this.onWarningClose} 
-            message={warning}
-          />
-          <ChannelList 
-            channels={channels.map(el => ({
-                ...el.meta,
-                pubDate: el.entries[0] && el.entries[0].pubDate
-              }))
-            }
-            onItemDelete={::this.onItemDelete}
-            onItemOpen={::this.onItemOpen}
-          />
+        <Warning 
+          onClose={::this.onWarningClose} 
+          message={warning}
+        />
+        <ChannelList 
+          channels={channelsWithPubDate}
+          onItemDelete={::this.onItemDelete}
+          onItemOpen={::this.onItemOpen}
+        />
       </Page>
     )
   }
 } 
+
+function stateToProps({channels}){
+  return {
+    warning: channels.message,
+    channels: channels.arrOfChannels
+  }
+}
 
 export default Home

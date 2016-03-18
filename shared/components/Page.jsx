@@ -1,10 +1,7 @@
 
-const Page = ({children}) => (
+const Page = ({...props}) =>
   <section className="section m-magic">
-    <div className="container">
-  	  {children}
-    </div>
+    <div className="container" {...props}/>
   </section>
-)
 
 export default Page

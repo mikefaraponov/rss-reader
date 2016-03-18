@@ -9,8 +9,8 @@ function getRandomColor() {
     color += letters[Math.round(Math.random() * 15)]
   return color
 }
-
-const colors = ["#78b901", "#d584f6", "#ac4e58", "#14cbbf", "#a6a04e", "#f8c5e6", "#c5a908", "#8d32d9", "#d61993", "#91c67c", "#e8540b", "#61095a", "#d448dc", "#279773", "#8a0e53", "#de0acb", "#3ae1cd", "#853441", "#c22542", "#767651", "#d3af27", "#ff2a4c", "#ac16b6", "#d53894", "#256b68", "#6482fd"]
+window.radCol = getRandomColor
+const colors = ["#e3cbae", "#66e443", "#d055cd", "#ca252c", "#62d577", "#8ca55f", "#2d7ab3", "#92e413", "#ae4abf", "#803935", "#41ae4b", "#7bdd40", "#bf2447", "#8814e6", "#2d1d12", "#4ea291", "#cbc3a5", "#69700a", "#4a27c8", "#13704e", "#4b668a", "#e9237f", "#89561f", "#5d4772", "#be6e95", "#92695a"]
 
 /**
  * [lettersFrequency description]
@@ -60,7 +60,7 @@ function toChartJs(lettersMap){
   for(let letter of lettersMap.keys())
     chart.push({
       value: lettersMap.get(letter),
-      color: colors[i++],
+      color:  colors[i++],
       label: letter
     })
 

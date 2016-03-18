@@ -1,5 +1,5 @@
 
-const Icon = ({className, fa}) => 
-  <i className={`fa fa-${fa}` + (className || '')}/>
+const Icon = ({fa, className, ...props}) => 
+  <i className={`fa fa-${fa} ` + (className || '')} {...props}/>
 
 export default Icon

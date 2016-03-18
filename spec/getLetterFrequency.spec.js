@@ -10,7 +10,7 @@ describe("getLetterFrequency suite", function() {
     expect(() => lettersFrequency()).toThrowError(/params/)
   })
 
-  it("return Map with keys - letters and values - char frequency", function(){
+  it("should return Map with keys - letters and values - char frequency", function(){
     const result = lettersFrequency('abdcdcc, %d12& ^')
     const dict = new Map()
     dict.set('a', 1)

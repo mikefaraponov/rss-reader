@@ -2,9 +2,9 @@ import Icon from './Icon'
 
 const ChannelListItem = ({channel, onDelete, onOpen}) => (
     <tr>
-      <td>{channel.title}</td>
-      <td>{new Date(channel.pubDate).toLocaleDateString() || 'Unknown'}</td>
-      <td className='is-hidden-mobile'>{channel.link}</td>
+      <td className='center-align'>{channel.title}</td>
+      <td className='center-align'>{new Date(channel.pubDate).toLocaleDateString() || 'Unknown'}</td>
+      <td className='is-hidden-mobile center-align'>{channel.link}</td>
       <td className="table-link table-icon">
         <a onClick={onOpen}>
           <Icon fa="newspaper-o"/>

@@ -7,13 +7,17 @@ import NotFound from './components/NotFound'
 import Icon from './components/Icon'
 import Root from './components/Root'
 
+const CHANNELS_PATH = '/channels/id:id'
+const HOME_PATH = '/'
+const NOT_FOUND_PATH = '*'
+
 export default (
   <Route component={Root}>
-    <Route component={App} path='/'>
-      <Route component={News} path='/channels/id:id'/>
+    <Route component={App} path={HOME_PATH}>
+      <Route component={News} path={CHANNELS_PATH}/>
       <IndexRoute component={Home}/>
     </Route>
-    <Route path="*" component={NotFound}/>
+    <Route component={NotFound} path={NOT_FOUND_PATH}/>
   </Route>
 );
 

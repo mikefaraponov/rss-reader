@@ -1,44 +1,50 @@
-import { Pie } from "react-chartjs"
+import { Pie, Doughnut } from "react-chartjs"
 import {getLettersFrequency} from "../redux/utils/getLettersFrequency"
 import {removeTags, searchAnImage} from "../redux/utils/stringParsers"
 
-const NewsListItem = ({item, onOpen}) => {
-  const {description, image, author, pubDate, isOpen} = item;
-  if(description){
+const MediaAvatar = ({url}) => 
+  <figure className="media-left">
+    <p className="image is-64x64">
+      <img height="64px"  width="64px" src={url || '/not_found.png'}/>
+    </p>
+  </figure>
+
+const LetterFreqPie = ({data}) =>
+  data?
+    <p className='is-text-centered stats-container'>
+      <Pie className='stats' data={getLettersFrequency(data)}/>
+    </p>
+    :
+    <p/>
+
+const Media = ({className, ...props}) =>
+  <article className={`media ${className}`} {...props}/>
+
+
+const NewsListItem = ({feed, onOpen}) => {
+  const {description, image, author, pubDate, isOpen} = feed;
+  if(description) {
     var imageUrl = searchAnImage(description)
-    var clearDesc = removeTags(description)
+    var clearDescription = removeTags(description)
   }
   return (
-    <article className="media" onDoubleClick={onOpen}>
-      <figure className="media-left">
-        <p className="image is-64x64">
-          <img height="64px"  width="64px" src={
-            image.url || imageUrl || '/not_found.png'
-          }/>
-        </p>
-      </figure>
+    <Media onDoubleClick={onOpen}>
+      <MediaAvatar url={image.url || imageUrl}/>
       <div className="media-content">
         <div className="content">
           <p>
-            <strong>{author || item['rss:title']['#']}</strong> <small>{
-              pubDate?'posted at ' + new Date(pubDate).toLocaleString():''
+            <strong>{author || feed['rss:title']['#']}</strong> <small>{
+              pubDate?`posted at ${new Date(pubDate).toLocaleString()}`:'Pub date is unknown.'
             }</small>
             <br/>
-            {clearDesc}
+            {clearDescription}
           </p>
-          {
-            isOpen && clearDesc?
-            <p className='is-text-centered stats-container'>
-              <Pie className='stats' data={getLettersFrequency(clearDesc)}/>
-            </p>
-            :
-            null
-          }
+          <LetterFreqPie data={isOpen && clearDescription}/>
         </div>
       </div>
-      
-    </article>
-)}
+    </Media>
+  )
+}
 
 
 

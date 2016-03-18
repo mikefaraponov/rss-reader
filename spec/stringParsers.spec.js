@@ -1,4 +1,7 @@
-import { removeTags, searchAnImage  } from '../shared/redux/utils/stringParsers'
+import { 
+  removeTags, 
+  searchAnImage  
+} from '../shared/redux/utils/stringParsers'
 
 describe("stringParsers module", function() {
 

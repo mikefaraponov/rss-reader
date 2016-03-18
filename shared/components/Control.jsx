@@ -1,8 +1,4 @@
-
-const Control = ({style, children, className}) => (
-  <p className={`control ${className || ""}`} style={style}>
-      { children }
-  </p>
-)
+const Control = ({className, ...props}) => 
+  <p className={`control ${className || ""}`} {...props}/>
 
 export default Control;

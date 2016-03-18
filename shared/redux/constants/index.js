@@ -14,3 +14,4 @@ export const CLEAR_RSS_ERROR = 'CLEAR_RSS_ERROR'
 
 export const REMOVE_RSS = 'REMOVE_RSS'
 export const CLEAR_ALL_RSS = 'CLEAR_ALL_RSS'
+

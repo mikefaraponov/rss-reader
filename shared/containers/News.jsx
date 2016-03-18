@@ -1,27 +1,30 @@
-import {connect} from 'react-redux'
 import Page from '../components/Page'
 import Stats from '../components/Stats'
 import NewsList from '../components/NewsList'
+import getAuthorsCount from '../redux/utils/getAuthorsCount'
+import {connect} from 'react-redux'
 import {getFeedsById} from '../redux/actions/getFeedsById'
 import {toggleStats} from '../redux/actions/sync/feeds'
-import getAuthorsCount from '../redux/utils/getAuthorsCount'
+import {routeActions} from 'react-router-redux'
 
-@connect((state, own) => ({
-  feeds: state.feeds.arrOfFeeds, 
-  id: own.params.id,
-  isLoading: state.feeds.loading,
-  icon: state.feeds.icon
-}))
+@connect(mapStateToProps)
 class News extends React.Component {
-
   componentWillUnmount() {
     clearInterval(this.interval)
   }
-
   componentWillMount() {
-    const getFeeds = this.props.dispatch.bind(null, getFeedsById(this.props.id))
-    getFeeds()
-    this.interval = setInterval(getFeeds, 5 * 60 * 1000)
+    const {
+      id, channels, dispatch
+    } = this.props
+
+    if( channels.find( (el, i) => i == id ) ){
+      const getFeeds = dispatch.bind(null, getFeedsById(id))
+      getFeeds()
+      this.interval = setInterval(getFeeds, 5 * 60 * 1000)
+    } 
+    else 
+      dispatch(routeActions.replace('/not_found'))
+
   }
 
   onMessageOpen(i){
@@ -31,27 +34,36 @@ class News extends React.Component {
   }
 
   render(){
-    const { feeds, icon, isLoading } = this.props
-
-    return (
-      isLoading?
+    const { feeds, icon, isLoading } = this.props,
+    stats = {
+      messagesCount: feeds.length,
+      authorsCount: getAuthorsCount(feeds),
+      imageUrl: icon
+    }
+    return isLoading?
       <Page>
         <div className="is-text-centered">Loading...</div>
       </Page>
       :
       <Page>
-          <Stats stats={{
-              messagesCount: feeds.length,
-              authorsCount: getAuthorsCount(feeds),
-              imageUrl: icon
-             }}/>
+          <Stats stats={stats}/>
           <NewsList
             isLoading={isLoading}
-            news={feeds} 
+            feeds={feeds}
             onOpen={::this.onMessageOpen}
           />
       </Page>
-    );
+    
+  }
+}
+
+function mapStateToProps({channels, feeds}, props){
+  return {
+    id: props.params.id,
+    icon: feeds.icon,
+    feeds: feeds.arrOfFeeds, 
+    channels: channels.arrOfChannels,
+    isLoading: feeds.loading
   }
 }
 

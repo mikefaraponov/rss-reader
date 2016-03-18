@@ -1,11 +1,6 @@
-export const ColumnsMobile = ({children, className}) => (
-  <div className={`columns is-mobile ${className || ''}`}>
-    {children}
-  </div>
-)
+export const ColumnsMobile = ({className, ...props}) => 
+  <div className={`columns is-mobile ${className || ''}`} {...props}/>
 
-export const Column = ({children, className}) => (
-  <div className={`column ${className || ''}`}>
-    {children}
-  </div>
-)
+export const Column = ({className, ...props}) => 
+  <div className={`column ${className || ''}`} {...props}/>
+

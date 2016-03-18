@@ -99,24 +99,10 @@ a {
     color: inherit;
 }
 
-.be-active {
-    color: black !important;
+#channels {
+    margin-right: 10px;
 }
 
-/*#add {
-    z-index: 5;
-    text-align: center;
-    padding-top: 10px;
-    color: white;
-    background-color: #97cd76;
-    width: 28px;
-    height: 40px;
-    position: fixed;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    left: 0;
-    top: 45%;
-    transition: all 0.75s;
-}*/
-
-
+.center-align {
+    text-align: center !important;
+}

@@ -1,15 +1,14 @@
 import ChannelListItem from './ChannelListItem'
-const styleActions = {textAlign: 'center'}
 
 
 const ChannelList = ({channels, onItemDelete, onItemOpen}) => (
     <table className="table is-striped">
       <thead>
         <tr>
-          <th>Title</th>
-          <th>Updated</th>
-          <th className='is-hidden-mobile'>Link</th>
-          <th colSpan="2" style={styleActions}>Actions</th>
+          <th className='center-align'>Title</th>
+          <th className='center-align'>Updated</th>
+          <th className='is-hidden-mobile center-align'>Link</th>
+          <th colSpan="2">Actions</th>
         </tr>
       </thead>
       <tbody>

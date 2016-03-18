@@ -1,14 +1,11 @@
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 import {connect} from 'react-redux'
-import Icon from '../components/Icon'
 import {routeActions} from 'react-router-redux'
 import {getChannelByUrl} from '../redux/actions/getChannelByUrl'
 import {clearAllRss} from '../redux/actions/sync/channels'
 
-@connect((state) => ({
-  loading: state.channels.loading,
-  channelsCount: state.channels.arrOfChannels.length
-}) )
+@connect(mapStateToProps)
 class App extends React.Component {
   onBack(ev){
     this.props.dispatch(routeActions.goBack())
@@ -35,15 +32,17 @@ class App extends React.Component {
           onBack={::this.onBack}
         />
         {this.props.children}
-        <footer className="app-footer">Powered by &copy;&nbsp;
-          <a className="power-source" href="//mikefaraponov.github.io">Mike F.</a>&nbsp;and&nbsp;
-          <Icon fa='stack-overflow'/>&nbsp;
-          <Icon fa='github'/>&nbsp;
-          <Icon fa='css3'/>&nbsp;
-          <Icon fa='html5'/>&nbsp;
-        </footer>
+        <Footer/>
       </main>
     );
   }
 }
+
+function mapStateToProps({channels}){
+  return {
+    loading: channels.loading,
+    channelsCount: channels.arrOfChannels.length
+  }
+}
+
 export default App
