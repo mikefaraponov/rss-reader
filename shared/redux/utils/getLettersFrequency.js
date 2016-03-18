@@ -9,7 +9,10 @@ function getRandomColor() {
     color += letters[Math.round(Math.random() * 15)]
   return color
 }
-window.radCol = getRandomColor
+
+if(typeof window !== 'undefined')
+  window.randCol = getRandomColor
+
 const colors = ["#e3cbae", "#66e443", "#d055cd", "#ca252c", "#62d577", "#8ca55f", "#2d7ab3", "#92e413", "#ae4abf", "#803935", "#41ae4b", "#7bdd40", "#bf2447", "#8814e6", "#2d1d12", "#4ea291", "#cbc3a5", "#69700a", "#4a27c8", "#13704e", "#4b668a", "#e9237f", "#89561f", "#5d4772", "#be6e95", "#92695a"]
 
 /**
