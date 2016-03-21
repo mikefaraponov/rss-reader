@@ -12,9 +12,9 @@ const app       = Express(),
       NODE_ENV  = process.env.NODE_ENV;
 
 const singlePageApplication = 
-  (rootDir, pagePath) =>
+  (...path) =>
     (req, res) => 
-      res.sendFile(join(rootDir, pagePath))
+      res.sendFile(join(...path))
 
 app
   .use(logger('dev'))
@@ -22,7 +22,7 @@ app
   .use(json())
   .use(urlencoded({ extended: false }))
   .use(Express.static( join(__dirname, '..', 'static') ))
-  .use(singlePageApplication(`${__dirname}/../client` , 'index.html'))
+  .use(singlePageApplication(`${__dirname}/../client/index.html`))
 
 server
   .listen(process.env.PORT || 1337, onStart)
@@ -31,13 +31,12 @@ server
 
 
 function onStart(err){
-    if(!err)
-        debug(`Server started!`);
+   !err && debug(`Server started!`);
 }
 
 function onListening() {
-  let addr = server.address();
-  let bind = typeof addr === 'string'
+  const addr = server.address(),
+   bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : `port ${addr.port}`;
   debug('Listening on ' + bind);
@@ -45,9 +44,8 @@ function onListening() {
 
 function onError(err) {
   const { port } = err;
-  if (err.syscall !== 'listen') {
-    throw err;
-  }
+
+  if (err.syscall !== 'listen') throw err;
 
   const bind = typeof port === 'string'
     ? 'Pipe ' + port

@@ -1,10 +1,10 @@
-import Header from '../components/App/Header'
-import Footer from '../components/App/Footer'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {routeActions} from 'react-router-redux'
 import {getChannelByUrl} from '../redux/actions/getChannelByUrl'
 import {clearAllRss} from '../redux/actions/sync/channels'
+import Header from '../components/App/Header'
+import Footer from '../components/App/Footer'
 
 @connect(mapStateToProps, mapDispatchToProps)
 class App extends React.Component {
@@ -12,9 +12,11 @@ class App extends React.Component {
     this.props.goBack()
   }
   onAdd(ev){
-    var x;
-    if(x = prompt('Type RSS link!'))
-      this.props.getChannelByUrl(x.trim())
+    var x = prompt('Type RSS link!').trim()
+    x?
+      this.props.getChannelByUrl(x)
+      :
+      alert('Empty string!')
   }
   onClear(ev){
     if(confirm('Are you sure?'))
@@ -31,10 +33,10 @@ class App extends React.Component {
           onClear={::this.onClear}
           onBack={::this.onBack}
         />
-        {this.props.children}
+        { this.props.children }
         <Footer/>
       </main>
-    );
+    )
   }
 }
 

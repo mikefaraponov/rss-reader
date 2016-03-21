@@ -8,7 +8,7 @@ const ChannelList = ({channels, onItemDelete, onItemOpen}) =>
           <th className='center-align'>Title</th>
           <th className='center-align'>Updated</th>
           <th className='is-hidden-mobile center-align'>Link</th>
-          <th colSpan="2">Actions</th>
+          <th className='center-align' colSpan="2">Actions</th>
         </tr>
       </thead>
       <tbody>
